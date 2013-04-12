@@ -12,11 +12,11 @@ $ch = new AMQPChannel($cnn);
 $ex = new AMQPExchange($ch);
 $ex->setName("exchange-" . time());
 try {
-  $ex->setType("invalid_exchange_type");
+	$ex->setType("invalid_exchange_type");
 } catch (Exception $e) {
 	echo get_class($e);
 	echo PHP_EOL;
-    echo $e->getMessage();
+	echo $e->getMessage();
 }
 ?>
 --EXPECT--

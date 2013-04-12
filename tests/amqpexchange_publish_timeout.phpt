@@ -46,8 +46,8 @@ try {
 	$end = microtime(true);
 	echo get_class($e);
 	echo PHP_EOL;
-    echo $e->getMessage();
-    echo PHP_EOL;
+	echo $e->getMessage();
+	echo PHP_EOL;
 }
 //$delay = abs($end - $start - $timeout);
 //echo $delay < 0.005 ? 'true' : 'false';

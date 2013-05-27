@@ -57,4 +57,4 @@ $q2->consume(function ($env, $queue) {
 });
 --EXPECT--
 Q1: queue1-message1
-Q2: queue2-message2
+Q2: queue2-message1

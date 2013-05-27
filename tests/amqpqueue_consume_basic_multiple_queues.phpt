@@ -43,7 +43,7 @@ $ex2->publish('queue2-message1', 'rk2');
 
 // Read from the queue
 $q1->consume(function ($env, $queue) {
-  echo $env->getBody().PHP_EOL;
+	echo "Q1: ".$env->getBody().PHP_EOL;
 	$queue->ack($env->getDeliveryTag());
 	return false;
 });
@@ -51,7 +51,7 @@ $q1->consume(function ($env, $queue) {
 
 // Read from the queue
 $q2->consume(function ($env, $queue) {
-	echo $env->getBody().PHP_EOL;
+	echo "Q2: ".$env->getBody().PHP_EOL;
 	$queue->ack($env->getDeliveryTag());
 	return false;
 });

@@ -10,30 +10,30 @@ $cnn->connect();
 $ch = new AMQPChannel($cnn);
 
 $ex1 = new AMQPExchange($ch);
-$ex1->setName('exchange1');
+$ex1->setName('test-multiple-queues-exchange1');
 $ex1->setType(AMQP_EX_TYPE_DIRECT);
 $ex1->declareExchange();
 
 // Create a new queue
 $q1 = new AMQPQueue($ch);
-$q1->setName('queue1');
+$q1->setName('test-multiple-queues-queue1');
 $q1->declareQueue();
 
 // Bind it on the exchange to routing.key
-$q1->bind('exchange1', 'rk1');
+$q1->bind('test-multiple-queues-exchange1', 'rk1');
 
 $ex2 = new AMQPExchange($ch);
-$ex2->setName('exchange2');
+$ex2->setName('test-multiple-queues-exchange2');
 $ex2->setType(AMQP_EX_TYPE_DIRECT);
 $ex2->declareExchange();
 
 // Create a new queue
 $q2 = new AMQPQueue($ch);
-$q2->setName('queue2');
+$q2->setName('test-multiple-queues-queue2');
 $q2->declareQueue();
 
 // Bind it on the exchange to routing.key
-$q2->bind('exchange2', 'rk2');
+$q2->bind('test-multiple-queues-exchange2', 'rk2');
 
 // Publish a message to the exchange with a routing key
 $ex1->publish('queue1-message1', 'rk1');

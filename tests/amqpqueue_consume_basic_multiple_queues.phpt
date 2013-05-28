@@ -40,21 +40,24 @@ $ex1->publish('queue1-message1', 'rk1');
 $ex1->publish('queue1-message2', 'rk1');
 $ex2->publish('queue2-message1', 'rk2');
 
-
-// Read from the queue
-$q1->consume(function ($env, $queue) {
+function consume_from_queue1($env, $queue) {
 	echo "Q1: ".$env->getBody().PHP_EOL;
 	$queue->ack($env->getDeliveryTag());
 	return false;
-});
-
+}
 
 // Read from the queue
-$q2->consume(function ($env, $queue) {
+$q1->consume('consume_from_queue1');
+
+
+function consume_from_queue2($env, $queue) {
 	echo "Q2: ".$env->getBody().PHP_EOL;
 	$queue->ack($env->getDeliveryTag());
 	return false;
-});
+}
+// Read from the queue
+$q2->consume('consume_from_queue2');
+
 --EXPECT--
 Q1: queue1-message1
 Q2: queue2-message1
